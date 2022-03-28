@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-svg" href="./images/nvidia.svg">
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <script src="https://kit.fontawesome.com/8290b48404.js" crossorigin="anonymous"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <link rel="stylesheet" href="./dist/style.css">
+    
+    <title>A-ViT: Adaptive Tokens for Efficient Vision Transformer</title>
+</head>
+<body>
+    <div class="main container">
+        <!-- <nav class="menu">
+            <ul>
+                <li><a href="#news">News</a></li>
+                <li><a href="https://arxiv.org/abs/2112.07658">Paper</a></li>
+            </ul>
+        </nav> -->
+
+        <div class="wrapper">
+            <div class="wrapper-title">
+                <div id="title">A-ViT: Adaptive Tokens for Efficient Vision Transformer</div>
+            </div>
+
+            <div class="wrapper-crew">
+                <div class="crew">
+                    <ul>
+                        <li class="wow animate__animated animate__fadeInDown"><a target="_blank" class="" href="https://research.nvidia.com/person/danny-yin">Hongxu Yin</a></li>
+                        <li class="wow animate__animated animate__fadeInDown"><a target="_blank" class="" href="https://research.nvidia.com/person/arash-vahdat">Arash Vahdat</a></li>
+                        <li class="wow animate__animated animate__fadeInDown"><a target="_blank" class="" href="https://alvarezlopezjosem.github.io/">Jose M. Alvarez</a></li>
+                        <li class="wow animate__animated animate__fadeInDown"><a target="_blank" class="" href="https://research.nvidia.com/person/arun-mallya">Arun Mallya</a></li>
+                        <li class="wow animate__animated animate__fadeInUp"><a target="_blank" class="" href="https://research.nvidia.com/person/jan-kautz">Jan Kautz</a></li>
+                        <li class="wow animate__animated animate__fadeInUp"><a target="_blank" class="" href="https://research.nvidia.com/person/pavlo-molchanov">Pavlo Molchanov</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="wrapper-main-download">
+                <div class="main-download">
+                    <figure>
+                        <img src="./img_source/images/nvidia.svg" alt="">                        
+                    </figure>
+                    <h2>CVPR 2022</h2>
+                    <img src="./img_source/images/logo.jpeg" alt="" width="200">
+                    <!-- <div class="download-btn">
+                        <a class="wow animate__animated animate__lightSpeedInLeft" target="_blank" href="https://arxiv.org/abs/2112.07658"><i class="far fa-sticky-note"></i> Paper (ArXiv) </a>
+                        <a class="wow animate__animated animate__lightSpeedInRight" target="_blank" href=""><i class="fas fa-file-code"></i> Code (to come)</a>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="wrapper-articles">
+                <div class="article">
+                    
+                </div>
+                
+
+                <div id="news" class="article">
+                    <div class="title">
+                        <span>News</span>
+                    </div>
+                    <div class="news-wrapper">
+                        <ul>
+                            <li><i class="fa-solid fa-rss"></i> [Mar 2022] <a target="_blank" href="">Code</a> will be released later.</li>
+                            <li><i class="fa-solid fa-rss"></i> [Mar 2022] Our paper has been accepted to <a target="_blank" href="https://cvpr2022.thecvf.com/">CVPR 2022</a>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="article">
+                    <div class="title">
+                        <span>Abstract</span>
+                    </div>
+                    <article>
+                        <figure class="article-image">
+                        <!-- <img class="wow animate__animated animate__fadeInLeft" src="./images/client_server.png" alt=""> -->
+                        <!-- <figcaption>*Equal contribution.**Equal advising.</figcaption> -->
+                        <img class="wow animate__animated animate__fadeInLeft" src="./img_source/fig/teaser/teaser_web.png" alt="">
+                        </figure>
+
+                        <p> We introduce A-ViT, a method to enable adaptive token computation for vision transformers. We augment the vision transformer block with adaptive halting module that computes a halting probability per token. The module reuses the parameters of existing blocks and it borrows a single neuron from the last dense layer in each block to compute the halting probability, imposing no extra parameters or computations. A token is discarded once reaching the halting condition. Via adaptively halting tokens, we perform dense compute only on the active tokens deemed informative for the task. As a result, successive blocks in vision transformers gradually receive less tokens, leading to faster inference. Learnt token halting vary across images, yet align surprisingly well with image semantics (see examples above and more in paper). This results in immediate, out-of-the-box inference speedup on off-the-shelf computational platform.</p>
+                    </article>
+                    <!-- <figure class="article-image"></figure> -->
+                </div>
+                <div class="article">
+                    <div class="title">
+                        <span>Key Approach</span>
+                    </div>
+                    <article>
+                        <p>
+                        We reformulate Adaptive Computation Time (Graves'17) for this task, extending halting to discard redundant spatial tokens. The appealing architectural properties of vision transformers enables our adaptive token reduction mechanism to speed up inference without modifying the network architecture or inference hardware. We demonstrate that A-ViT requires no extra parameters or sub-network for halting, as we base the learning of adaptive halting on the original network parameters. We further introduce distributional prior regularization that stabilizes training compared to prior ACT approaches. On the image classification task (ImageNet1K), we show that our proposed A-ViT yields high efficacy in filtering informative spatial features and cutting down on the overall compute. The proposed method improves the throughput of DeiT-Tiny by 62% and DeiT-Small by 38% with only 0.3% accuracy drop, outperforming prior art by a large margin.
+                        </p>
+                    </article>
+
+                    <figure class="article-image">
+                        <img class="wow animate__animated animate__fadeInRight" src="./img_source/fig/dynamic_fig.png" alt="">
+                        <figcaption>
+                            Original image (left) and the dynamic token depth (right) of A-ViT-Tiny on the ImageNet-1K validation set. Distribution of token computation highly aligns with visual features. Tokens associated with informative regions are adaptively processed deeper, robust to repeating objects with complex backgrounds. Best viewed in color.
+                        </figcaption>
+                    </figure>
+                    
+                    </figure>
+                </div>
+            </div>
+
+            <div class="paper">
+            <div id="paper" class="wrapper-extra-links">
+                <div class="extra-link">
+                    <div class="paper-pic">
+                        <span class="paper-title">Paper</span>
+                        <figure>
+                            <a target="_blank" href="https://arxiv.org/abs/2112.07658"><img src="./img_source/fig/paper_cover.png" alt=""></a>
+                        </figure>
+                    </div>
+                    <div class="description">
+                        <p> 	
+                            A-ViT: Adaptive Tokens for Efficient Vision Transformer, CVPR 2022.
+                        </p>
+                        <a target="_blank" href="https://arxiv.org/abs/2112.07658">paper</a>
+                    </div>
+                </div>
+            </div>
+
+           </div>
+
+            <div class="wrapper-code">
+                <span class="title">Bibtex</span>
+                    <pre>
+    <code id="code">
+
+    @inproceedings{yin2022adavit,
+        title={{A}-{V}i{T}: {A}daptive Tokens for Efficient Vision Transformer},
+        author={Yin, Hongxu and Vahdat, Arash and Alvarez, Jose and Mallya, Arun and Kautz, Jan and Molchanov, Pavlo},
+        booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+        year={2022}
+    }   
+                        </code>
+                    </pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="./dist/js/wow.min.js"></script>
+    <script src="./dist/js/main.js"></script>
+</body>
+</html>
