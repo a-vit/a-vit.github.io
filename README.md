@@ -1,4 +1,4 @@
-# AT-ViT Website
+# A-ViT Website
 
-Website for AT-ViT CVPR'22 paper. 
+Website for A-ViT CVPR'22 paper. 
 
